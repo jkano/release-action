@@ -452,6 +452,7 @@ class GithubArtifactUploader {
     async uploadArtifact(artifact, releaseId, uploadUrl, retry = 3) {
         try {
             core.debug(`Uploading artifact ${artifact.name}...`);
+            core.debug(`length: ${artifact.contentLength}, type: ${artifact.contentType}`);
             await this.releases.uploadArtifact(uploadUrl, artifact.contentLength, artifact.contentType, artifact.readFile(), artifact.name, releaseId);
         }
         catch (error) {
